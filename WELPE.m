@@ -35,7 +35,7 @@ tol=0.9*2*pi; %Wrapping tolerance
 %Linear regressor matrix
 A=bsxfun(@power,t,0:order);
 w=abs(data); %These are the sqrt(Weights), only used for implementation, the result is abs(data)^2
-dataPhaseWeighted=unwrap1D(angle(data),tol).*w;
+dataPhaseWeighted=unwrap(angle(data),tol).*w;
 x=bsxfun(@times,w,A)\dataPhaseWeighted;
 dataRot=data.*exp(-1i*A*x);
 
