@@ -1,5 +1,5 @@
-function [dataReal, dataRot, p0, p1, critVal]=WELPE(data,t,alter)
-% function [dataReal, dataRot, p0, p1, critVal]=WELPE(data,t,alter)
+function [dataReal, dataRot, p0, p1, critVal]=WELPE(data,t,order,alter)
+% function [dataReal, dataRot, p0, p1, critVal]=WELPE(data,t,order,alter)
 % Phase correction for temporal MRI data.
 % 
 % Takes a complex vector in time as input and makes it real by estimating 
@@ -11,6 +11,7 @@ function [dataReal, dataRot, p0, p1, critVal]=WELPE(data,t,alter)
 % Inputs:
 %           data  - complex-valued data vector over time
 %           t     - time vector
+%           order - order of the polynomial
 %           alter - set = 1 for sign-alternating phases 
 %
 % Outputs:
@@ -32,7 +33,7 @@ end
 tol=0.9*2*pi; %Wrapping tolerance
 
 %Linear regressor matrix
-A=[ones(size(t)), t];
+A=bsxfun(@power,t,0:order);
 w=abs(data); %These are the sqrt(Weights), only used for implementation, the result is abs(data)^2
 dataPhaseWeighted=unwrap1D(angle(data),tol).*w;
 x=bsxfun(@times,w,A)\dataPhaseWeighted;
