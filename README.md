@@ -1,6 +1,5 @@
 PhaseCorrection
 ===============
 
-MATLAB code for temporal phase correction in multi-echo T2 relaxometry, together with performance evaluating scripts.
-
-More files will be uploaded, and the scripts will be updated, in the near future.
+MATLAB code for temporal phase correction in multi-echo T2 relaxometry.
+http://www.sciencedirect.com/science/article/pii/S1090780714002742
